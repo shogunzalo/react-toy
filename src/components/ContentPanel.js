@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
@@ -75,7 +76,7 @@ export default class ContentPanel extends Component {
 			          	</Container>
 			        </ExpansionPanelSummary>
 			        <ExpansionPanelDetails>
-			          <Container>
+			          <Grid direction="column" alignItems="center">
 			          	<Typography>
 							Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
 							vitae egestas augue. Duis vel est augue.
@@ -104,7 +105,7 @@ export default class ContentPanel extends Component {
 						        {levelNames[5]}
 						      </ToggleButton>
 					      </ToggleButtonGroup>
-						</Container>
+						</Grid>
 			        </ExpansionPanelDetails>
 			      </ExpansionPanel>
 		);
