@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -7,6 +9,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import { makeStyles } from '@material-ui/core/styles';
 
 import SidePanel from './SidePanel'
 
@@ -18,6 +22,17 @@ export default class SimpleExpansionPanel extends Component {
         isLinearProgressVisible: false,
         expandedPanel: ""
       };
+    }
+
+    useStyles () {
+        return makeStyles(theme => ({
+		  button: {
+		    margin: theme.spacing(1),
+		  },
+		  input: {
+		    display: 'none',
+		  },
+		}));
     }
 
     handleClick() {
@@ -33,9 +48,12 @@ export default class SimpleExpansionPanel extends Component {
     }
 
 	render() {
+
+		const classes = this.useStyles();
+
 		return (
 			<Grid container spacing={3}>
-				<Grid item xs={6}>
+				<Grid item xs={7}>
 					<ExpansionPanel key="panelId1" expanded={this.state.expandedPanel === 'panel1'} onChange={this.handleChange.bind(this, "panel1")}>
 				        <ExpansionPanelSummary
 				          expandIcon={<ExpandMoreIcon />}
@@ -58,10 +76,30 @@ export default class SimpleExpansionPanel extends Component {
 			          	</Container>
 			        </ExpansionPanelSummary>
 			        <ExpansionPanelDetails>
-			          <Typography>
-			            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-			            vitae egestas augue. Duis vel est augue.
-			          </Typography>
+			          <Container>
+			          	<Typography>
+							Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
+							vitae egestas augue. Duis vel est augue.
+				        </Typography>
+				          <br/>
+				          <ButtonGroup size="small" color="secondary" variant="contained">
+						      <Button>
+						        Value 1
+						      </Button>
+						      <Button>
+						        Value 2
+						      </Button>
+						      <Button>
+						        Value 3
+						      </Button>
+						      <Button>
+						        Value 4
+						      </Button>
+						      <Button>
+						        Value 5
+						      </Button>
+					      </ButtonGroup>
+						</Container>
 			        </ExpansionPanelDetails>
 			      </ExpansionPanel>
 
@@ -87,14 +125,34 @@ export default class SimpleExpansionPanel extends Component {
 			          	</Container>
 			        </ExpansionPanelSummary>
 			        <ExpansionPanelDetails>
-			          <Typography>
-			            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-			            vitae egestas augue. Duis vel est augue.
-			          </Typography>
+			          <Container>
+			          	<Typography>
+							Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
+							vitae egestas augue. Duis vel est augue.
+				        </Typography>
+				          <br/>
+				          <ButtonGroup size="small" color="secondary" variant="contained">
+						      <Button>
+						        Value 1
+						      </Button>
+						      <Button>
+						        Value 2
+						      </Button>
+						      <Button>
+						        Value 3
+						      </Button>
+						      <Button>
+						        Value 4
+						      </Button>
+						      <Button>
+						        Value 5
+						      </Button>
+					      </ButtonGroup>
+						</Container>
 			        </ExpansionPanelDetails>
 			      </ExpansionPanel>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={5}>
 					<SidePanel/>
 				</Grid>
 			</Grid>
