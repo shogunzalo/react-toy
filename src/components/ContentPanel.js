@@ -27,21 +27,29 @@ export default class ContentPanel extends Component {
 			level: 0,
 			levelName: levelNames[0],
 			open: false,
+			message: "",
+			autoHideDuration: 0,
       };
     }
 
     selectLevel(event, value) {
 		event.preventDefault();
-		this.handleOpen();
+		const levelName = value ? levelNames[value] : levelNames[0];
+		this.handleClose();
+
+		if (value) {
+			this.handleOpen(levelName);
+		}
+
 		this.setState({
 			level: value ? value : 0,
-			levelName: value ? levelNames[value] : levelNames[0],
+			levelName: levelName,
 		});
     }
 
-    handleOpen = () => this.setState({ open: true });
+    handleOpen = (levelName) => this.setState({ open: true, message: `Level changed to ${levelName}`, autoHideDuration: 3000 });
 
-  	handleClose = () => this.setState({ open: false });
+  	handleClose = () => this.setState({ open: false, autoHideDuration: 0 });
 
 	render() {
 
@@ -113,14 +121,15 @@ export default class ContentPanel extends Component {
 			          vertical: 'bottom',
 			          horizontal: 'right',
 			        }}
-			        autoHideDuration={3000}
+			        autoHideDuration={this.state.autoHideDuration}
 					open={this.state.open}
 					onClose={this.handleClose}
 					>
 					<SnackbarContent
-						message={
-							"Sucess!"
-						}
+						style={{
+							backgroundColor: green[600],
+						}}
+						message={this.state.message}
 				    />
 				</Snackbar>
 		      </React.Fragment>
