@@ -76,7 +76,7 @@ export default class ContentPanel extends Component {
 			          	</Container>
 			        </ExpansionPanelSummary>
 			        <ExpansionPanelDetails>
-			          <Grid direction="column" alignItems="center">
+			          <Grid>
 			          	<Typography>
 							Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
 							vitae egestas augue. Duis vel est augue.
