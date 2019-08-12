@@ -5,8 +5,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import {green} from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Typography from '@material-ui/core/Typography';
@@ -23,33 +26,29 @@ export default class ContentPanel extends Component {
 		this.state = {
 			level: 0,
 			levelName: levelNames[0],
+			open: false,
       };
     }
 
     selectLevel(event, value) {
-      this.setState({
-        level: value ? value : 0,
-        levelName: value ? levelNames[value] : levelNames[0],
-      });
+		event.preventDefault();
+		this.handleOpen();
+		this.setState({
+			level: value ? value : 0,
+			levelName: value ? levelNames[value] : levelNames[0],
+		});
     }
 
-    useStyles () {
-        return makeStyles(theme => ({
-		  button: {
-		    margin: theme.spacing(1),
-		  },
-		  input: {
-		    display: 'none',
-		  },
-		}));
-    }
+    handleOpen = () => this.setState({ open: true });
+
+  	handleClose = () => this.setState({ open: false });
 
 	render() {
 
-		const classes = this.useStyles();
 		const { expandedPanel, handleChange, identifier } = this.props;
 
 		return(
+			<React.Fragment>
 			<ExpansionPanel 
 				key={ identifier } 
 				expanded={ expandedPanel === identifier } 
@@ -108,6 +107,23 @@ export default class ContentPanel extends Component {
 						</Grid>
 			        </ExpansionPanelDetails>
 			      </ExpansionPanel>
+
+				<Snackbar
+					anchorOrigin={{
+			          vertical: 'bottom',
+			          horizontal: 'right',
+			        }}
+			        autoHideDuration={3000}
+					open={this.state.open}
+					onClose={this.handleClose}
+					>
+					<SnackbarContent
+						message={
+							"Sucess!"
+						}
+				    />
+				</Snackbar>
+		      </React.Fragment>
 		);
 	}
 }
