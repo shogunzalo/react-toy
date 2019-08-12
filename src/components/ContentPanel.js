@@ -5,7 +5,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import {green} from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -14,11 +13,11 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Typography from '@material-ui/core/Typography';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const levelNames = ["Select your level", "Novice", "Advanced Beginner", "Practitioner", "Proficient", "Expert"];
 
-export default class ContentPanel extends Component {
+class ContentPanel extends Component {
 
 	constructor(props) {
 		super(props);
@@ -53,6 +52,7 @@ export default class ContentPanel extends Component {
 
 	render() {
 
+		const { classes } = this.props;
 		const { expandedPanel, handleChange, identifier } = this.props;
 
 		return(
@@ -72,8 +72,8 @@ export default class ContentPanel extends Component {
 			          		<Container>
 			                  <br/>
 			                  <LinearProgress
-			                    variant="determinate"
-			                    color="secondary"
+			                  	variant="determinate"
+			                    classes={{colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary}}
 			                    value={ this.state.level * 20 }
 			                  />
 			                  <Typography align="right">
@@ -127,7 +127,7 @@ export default class ContentPanel extends Component {
 					>
 					<SnackbarContent
 						style={{
-							backgroundColor: green[600],
+							backgroundColor: '#03DAC5',
 						}}
 						message={this.state.message}
 				    />
@@ -136,3 +136,14 @@ export default class ContentPanel extends Component {
 		);
 	}
 }
+
+const styles = props => ({
+  colorPrimary: {
+    backgroundColor: '#E0E0E0',
+  },
+  barColorPrimary: {
+    backgroundColor: '#BB86FC',
+  }
+});
+
+export default  withStyles(styles)(ContentPanel);
